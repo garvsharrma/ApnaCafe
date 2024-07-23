@@ -1,0 +1,99 @@
+.footer {
+    position:relative;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: black;
+    height: 60vh;
+    width:100%;
+    color: white;
+    text-align: center;
+    bottom: 0;
+  }
+
+  .visitUs{
+    position: absolute;
+    left:20%;
+    top:16%;
+  }
+
+  .visitUs h3{
+    font-size: 3rem;
+    margin-bottom: 15%;
+    margin-top: 0%;
+  }
+
+  .visitUs h4{
+    font-size: 1.2rem;
+    margin-top: 0%;
+    margin-bottom: 8%;
+  }
+
+  .navigation{
+    position: absolute;
+    right: 20%;
+    top:15%;
+  }
+  
+  .navigation h3{
+    font-size: 3rem;
+    margin-bottom: 15%;
+    margin-top: 0%;
+  }
+
+  .navigation a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+  }
+
+  hr{
+    height: 0%;
+    width:100%;
+  }
+
+  .bottom-hr{
+    left: 8%;
+    width: 84%;
+    position: absolute;
+    top:80%;
+  }
+
+  /* .copyright-content{
+    position: absolute;
+    bottom:3%;
+    left:50%;
+    transform: translateX(-50%);
+  } */
+
+  .copyright-content {
+    position: absolute;
+    bottom:5%;
+    left: 22%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;;
+  }
+  
+  .copyright-content p {
+    margin: 0;
+    padding: 0 10px;
+  }
+  
+  .copyright-content a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .copyright-content a:hover {
+    text-decoration: underline;
+  }
+  
+
+  .navigation a:hover {
+    opacity: 0.8;
+    color:#DDA552;
+    text-decoration: underline;
+  }

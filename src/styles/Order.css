@@ -1,0 +1,147 @@
+.order-page {
+  width: 100%;
+}
+
+.section-1 {
+  background-image: url('../images/order-online-bg-op1\ \(2\).jpg'); /* Replace with your background image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Adjust the height as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.section-1-content {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.scroll-button {
+  position: absolute;
+  bottom: 5%;
+  left:50%;
+  width: 25px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.mouse {
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wheel {
+  width: 5px;
+  height: 7px;
+  background-color: white;
+  border-radius: 3px;
+  position: absolute;
+  top: 30%;
+  animation: bounce 2.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.cart-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 70px; /* Adjust the size as needed */
+  height: auto;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.section-next h2{
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.section-next {
+  background: url('../images/menu-bg.jpg') no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 97.3%;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.items-grid {
+  display: grid;
+  width: 85%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.item-card {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.17);
+  transition: transform 0.2s;
+  text-align: left;
+}
+
+.item-card:hover {
+  transform: scale(1.05);
+}
+
+.item-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.item-card h3 {
+  margin: 10px 0;
+}
+
+.item-card p {
+  margin: 5px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.item-card button {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0%;
+  margin-top:3%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s; /* Added transform transition */
+}
+
+.item-card button:hover {
+  background-color: #ff4500;
+}
+
+.item-card button:active {
+  transform: scale(0.95); /* Scale down the button slightly when clicked */
+}
