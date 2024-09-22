@@ -21,7 +21,6 @@ import smImage6 from '../images/sm-image6.jpg';
 import smImage7 from '../images/sm-image7.jpg';
 import smImage8 from '../images/sm-image8.jpg';
 import smImage9 from '../images/sm-image9.jpg';
-import Carousel from '../components/Carousel';
 import starFilled from '../images/filled-star.png';
 import starHalfFilled from '../images/star-half-empty.png';
 import contactIMG from '../images/contact-side-img.jpg';
