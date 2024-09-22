@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 import cartIcon from '../images/icon-cart.png';
 import '../styles/Order.css';
@@ -8,16 +8,18 @@ const Order = () => {
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
 
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api'; // Fallback to localhost for development
+
   useEffect(() => {
-    fetch('http://localhost:5000/api/items')
+    fetch(`${API_BASE_URL}/items`)
       .then(response => response.json())
       .then(data => setItems(data))
       .catch(error => console.error('Error fetching items:', error));
-  }, []);
+  }, [API_BASE_URL]);
 
   const addToCart = async (itemId, quantity) => {
     try {
-      const response = await fetch('http://localhost:5000/api/cart', {
+      const response = await fetch(`${API_BASE_URL}/cart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,12 +46,12 @@ const Order = () => {
         <div className="section-1-content">
           <h1>Welcome to Apna Cafe</h1>
           <p>Enjoy our delicious meals from the comfort of your home</p>
-        <a href="/cart"><img src={cartIcon} alt="Cart" className="cart-icon" /></a>
+          <a href="/cart"><img src={cartIcon} alt="Cart" className="cart-icon" /></a>
           <div className="scroll-button" onClick={scrollToForm}>
-          <div className="mouse">
-            <div className="wheel"></div>
+            <div className="mouse">
+              <div className="wheel"></div>
+            </div>
           </div>
-        </div>
         </div>
       </section>
       <section id="order-content" className="section-next">
