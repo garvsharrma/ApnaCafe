@@ -1,0 +1,29 @@
+/* PaymentSuccess.css */
+.payment-success {
+  position: relative;
+  height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .success{
+    width:20%;
+  }
+  
+  .success-content{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+
+  .payment-success h2 {
+    color: green;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  
+  .payment-success p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }

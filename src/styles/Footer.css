@@ -1,7 +1,6 @@
 .footer {
     position:relative;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     background-color: black;
     height: 60vh;
@@ -59,13 +58,6 @@
     top:80%;
   }
 
-  /* .copyright-content{
-    position: absolute;
-    bottom:3%;
-    left:50%;
-    transform: translateX(-50%);
-  } */
-
   .copyright-content {
     position: absolute;
     bottom:5%;
@@ -73,6 +65,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap:20px;
     padding: 10px;;
   }
   

@@ -14,6 +14,9 @@ import Checkout from './pages/Checkout';
 import TermsAndConditions from './components/TermsAndConditions';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import RefundPolicy from './components/RefundPolicy';
+import PaymentSuccess from './components/PaymentSuccess';
+import ABC from './pages/Abc';
+
 
 function App() {
   return (
@@ -22,7 +25,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<About />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/order" element={<Order />} />
@@ -31,6 +34,9 @@ function App() {
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/abc" element={<ABC />} />
+
 
         </Routes>
         <Footer />

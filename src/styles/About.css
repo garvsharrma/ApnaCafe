@@ -1,0 +1,110 @@
+.about {
+    background-repeat: no-repeat;
+    background-image: url('../images/Home-Section-2-bg.jpg'); /* Replace with your image path */
+    background-size:cover;
+    background-position: left center;
+    height:110vh;
+    width: 100%; /* Ensure full viewport width */
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    color: #333;
+    text-align: center;
+  }
+
+  .about-content{
+    position: absolute;
+    width: 75%;
+    top:15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
+
+ /* From Uiverse.io by ClawHack1 */ 
+.contact-form {
+  position: absolute;
+  top:12%;
+  left:33%;
+    width:450px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .contact-form h2 {
+    position: relative;
+    left:4%;
+  }
+
+  .contact-form label {
+    color: black;
+  }
+  
+  .contact-form .heading pre{
+    position: relative;
+    font-size: 24px;
+    color: black;
+    margin-bottom: 12px;
+    font-weight: bold;
+    display: block;
+  }
+  
+  .contact-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-form label {
+    margin-bottom: 10px;
+  }
+  
+  textarea {
+    resize: none;
+    height: 80px;
+  }
+  
+  .contact-form input, .contact-form textarea {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 5px #66071b;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .contact-form button[type="submit"] {
+    background-color: #a77645;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .contact-form button[type="submit"]:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+.iconn{
+  width:8%;
+  margin-right: 3%;
+  margin-left: 3%;
+}
+
+.contact-form h5 {
+  font-size: 1.1rem;
+  margin: 3%;
+}
+
+.whatsapp-iconn{
+  width:9%;
+}

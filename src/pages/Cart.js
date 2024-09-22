@@ -14,58 +14,6 @@ const Cart = () => {
       .catch(error => console.error('Error fetching cart:', error));
   }, []);
 
-  // const createOrder = async () => {
-  //   const totalAmount = cart.reduce((sum, { item, quantity }) => sum + item.price * quantity, 0);
-  //   try {
-  //     const response = await fetch('http://localhost:5000/api/create-order', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ amount: totalAmount }),
-  //     });
-  //     const data = await response.json();
-  //     setOrder(data);
-  //     displayRazorpay(data);
-  //   } catch (error) {
-  //     console.error('Error creating order:', error);
-  //   }
-  // };
-
-  // const displayRazorpay = (order) => {
-  //   if (window.Razorpay) {
-  //     const options = {
-  //       key: 'your-key-id', // Replace with your Razorpay key ID
-  //       amount: order.amount,
-  //       currency: order.currency,
-  //       name: 'Apna Cafe',
-  //       description: 'Test Transaction',
-  //       order_id: order.orderId,
-  //       handler: (response) => {
-  //         alert(`Payment successful: ${response.razorpay_payment_id}`);
-  //         setCart([]);
-  //         navigate('/');
-  //       },
-  //       prefill: {
-  //         name: 'Customer Name',
-  //         email: 'customer@example.com',
-  //         contact: '9999999999',
-  //       },
-  //       notes: {
-  //         address: 'Apna Cafe Corporate Office',
-  //       },
-  //       theme: {
-  //         color: '#F37254',
-  //       },
-  //     };
-
-  //     const rzp = new window.Razorpay(options);
-  //     rzp.open();
-  //   } else {
-  //     console.error('Razorpay script not loaded');
-  //   }
-  // };
-
   const removeFromCart = async (itemId) => {
     try {
       const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
@@ -87,24 +35,34 @@ const Cart = () => {
   };
 
   return (
+    <><div className='up'></div>
     <div className="cart-page">
-      <h2>Your Cart</h2>
-      {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <>
-          {cart.map(({ item, quantity }) => (
-            <div key={item.id} className="cart-item">
-              <h3>{item.name}</h3>
-              <p>Quantity: {quantity}</p>
-              <p>Total: ₹{(item.price * quantity).toFixed(2)}</p>
-              <button onClick={() => removeFromCart(item.id)}>Remove</button>
-            </div>
-          ))}
-          <button className="checkout-button" onClick={handleCheckout}>Order Now</button>
-        </>
-      )}
-    </div>
+      <div className='cart-content'>
+        <h2>Your Cart</h2>
+        {cart.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <>
+            {cart.map(({ item, quantity }) => (
+              <div key={item.id} className="cart-item">
+                <h3>{item.name}</h3>
+                <p>Quantity: {quantity}</p>
+                <p>Total: ₹{(item.price * quantity).toFixed(2)}</p>
+                <button onClick={() => removeFromCart(item.id)}>Remove</button>
+              </div>
+            ))}
+        <button className="button" onClick={handleCheckout}>Checkout
+  <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
+    <path
+      clip-rule="evenodd"
+      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+      fill-rule="evenodd"
+    ></path>
+  </svg>
+</button>
+          </>
+        )}</div>
+      </div></>
   );
 };
 

@@ -15,8 +15,8 @@ function Footer() {
       <div className="navigation">
         <h3>Navigation</h3>
         <a href = "/menu">What We Sell</a><hr></hr>
-        <a href = "/about">About</a><hr></hr>
-        <a href = "/about">Order Online</a>
+        <a href = "/contact">Contact Us</a><hr></hr>
+        <a href = "/order">Order Online</a>
       </div>
       <hr className='bottom-hr'></hr>
       <div className='copyright-content'>

@@ -37,7 +37,7 @@ const Reservation = () => {
         const data = await response.json();
         console.log('Reservation saved:', data);
         // Set success message
-        setSuccessMessage('Reservation successfull!');
+        setSuccessMessage('Reservation successfull! You will recieve a confirmation mail shortly');
         // Reset form data
         setFormData({
           name: '',
@@ -72,7 +72,7 @@ const Reservation = () => {
       <div className="first-section">
         <div className="content">
           <h1>Reserve Your Table</h1>
-          <p>Experience the best dining at Apna Cafe.</p>
+          <p>Experience the best dining experience at Apna Cafe.</p>
         </div>
         <div className="scroll-button" onClick={scrollToForm}>
           <div className="mouse">
@@ -83,8 +83,6 @@ const Reservation = () => {
       <div id="reservation-form-section" className="second-section">
         <div className="reservation">
           <h2>Reserve a Table</h2>
-          {successMessage && <p className="success-message">{successMessage}</p>}
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Name:</label>
@@ -120,16 +118,18 @@ const Reservation = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="date">Date:</label>
-              <input
-                type="date"
-                id="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <label htmlFor="date">Date:</label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+              min={new Date().toISOString().split('T')[0]} // Sets the min date to today's date
+            />
+          </div>
+
             <div className="form-group">
               <label htmlFor="time">Time:</label>
               <input
@@ -152,8 +152,10 @@ const Reservation = () => {
                 required
               />
             </div>
-            <button type="submit">Reserve</button>
+            <button className='reservation-button' type="submit">Reserve</button>
           </form>
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
       </div>
     </div>

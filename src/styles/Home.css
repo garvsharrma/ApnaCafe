@@ -2,7 +2,7 @@
 
 .home-container {
   background-repeat: no-repeat;
-  background-image: url('../images/disposable-cup-rise-and-grind-4.jpg'); /* Replace with your image path */
+  background-image: url('../images/homepage-bg4.png'); /* Replace with your image path */
   background-size: cover;
   background-position: left center;
   height: 100vh; /* Ensure full viewport height */
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center; 
   align-items: center;
-   color: white;
+  color: white;
   text-align: center;
 }
 
@@ -67,7 +67,7 @@
 .home-content {
   position: absolute;
   top: 30%;
-  left: 12%;
+  left: 5%;
   max-width: 800px;
   padding: 2rem;
 }
@@ -251,6 +251,11 @@
 .fItem{
   border-radius: 50%;
   width:175px;
+  transition: transform 0.2s;
+}
+
+.fItem:hover{
+  transform: scale(1.1);
 }
 
 .fItems h3{
@@ -334,13 +339,12 @@
 }
 
 .social-media{
-  background: url('../images/menu-bg.jpg') no-repeat center center/cover;
   position: relative;
-  height: 210vh; /* Ensure full viewport height */
+  height: 200vh; /* Ensure full viewport height */
   width: 100%; /* Ensure full viewport width */
   display: flex;
   justify-content: center; 
-  align-items: center;
+  align-items: center;      
   color: #1a1a1a;
   text-align: center;
 }
@@ -376,63 +380,12 @@
   width: 380px;
   height: 380px;
   object-fit: cover;  /* Ensures the images cover the grid item space */
+  transition: transform 0.2s ease;
 }
 
-.happy-clients{
-  background: url('../images/happy-clients-bg.jpg') no-repeat center center/cover;
-  position: relative;
-  left: 7%;
-  height: 95vh; /* Ensure full viewport height */
-  width: 85%; /* Ensure full viewport width */
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  color: #1a1a1a;
-  text-align: center;
-}
-
-.cards{
-  position: absolute;
-  top:62%;
-  display: flex;
-  width: 80%;
-  justify-content: space-evenly; 
-  align-items: center;
-  text-align: center;
-}
-
-.card{
-  gap: 2%;
-  border-radius: 3%;
-  background-color: white;
-  width:18%;
-}
-
-.hc-heading{
-  position: absolute;
-  top:5%;
-  font-size: 3rem;
-  color:white;
-}
-
-.rating{
-  position: absolute;
-  top:25%;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color:white;
-}
-
-.stars{
-  display: flex;
-  position: absolute;
-  top:34%;
-  border-radius: 13px;
-}
-.review-text{
-  position: absolute;
-  top:40%;
-  color: white;
+.grid-item img:hover {
+  transform: scale(1.05);
+  
 }
 
 .contact-us{
@@ -445,9 +398,16 @@
   text-align: center; 
 }
 
+.git-heading{
+  position: absolute;
+  top:0%;
+  margin-top: 0%;
+  font-size: 3rem;
+  color:#1a1a1a;
+}
 .contact-content{
   position: absolute;
-  top:20%;
+  top: 23%;
   left:10%;
   width:40%;
   text-align: left;
@@ -462,7 +422,12 @@
 .contact-side-image{
   position: absolute;
   width: 40%;
-  top:20%;
+  top:23%;
   height:60%;
   left:50%;
+  transition: transform 0.2s ease;
+}
+
+.contact-side-image:hover{
+  transform: scale(1.05);
 }

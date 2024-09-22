@@ -15,8 +15,7 @@ function Navbar() {
           <Link to="/menu">What We Sell</Link>
           <Link to="/reservation">Reservations  </Link>
           <Link to="/order">Order Online</Link>
-          <Link to="/about">About Us</Link> 
-        
+          <Link to="/contact">Contact Us</Link>         
         </div>
         <div class = "widgets"> 
          <a href = "#">+91 7973588176</a> 

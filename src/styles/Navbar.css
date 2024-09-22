@@ -28,7 +28,7 @@
 
 .navbar-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.1rem;
   justify-content: center;
   align-items: center;
 }
@@ -41,8 +41,7 @@
 }
 
 .navbar-links a:hover {
-  opacity: 0.8;
-  color:#333;
+  opacity: 0.7;
   text-decoration: none;
 }
 

@@ -6,6 +6,7 @@ import '../styles/Order.css';
 const Order = () => {
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
+  const [addedItems, setAddedItems] = useState([]); // New state to track added items
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,6 +30,9 @@ const Order = () => {
       }
       const data = await response.json();
       setCart(data);
+
+      // Update the addedItems state to reflect the newly added item
+      setAddedItems(prevAddedItems => [...prevAddedItems, itemId]);
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
@@ -42,14 +46,14 @@ const Order = () => {
     <div className="order-page">
       <section className="section-1">
         <div className="section-1-content">
-          <h1>Welcome to Apna Cafe</h1>
+          <h1>Order Online</h1>
           <p>Enjoy our delicious meals from the comfort of your home</p>
-        <a href="/cart"><img src={cartIcon} alt="Cart" className="cart-icon" /></a>
+          <a href="/cart"><img src={cartIcon} alt="Cart" className="cart-icon" /></a>
           <div className="scroll-button" onClick={scrollToForm}>
-          <div className="mouse">
-            <div className="wheel"></div>
+            <div className="mouse">
+              <div className="wheel"></div>
+            </div>
           </div>
-        </div>
         </div>
       </section>
       <section id="order-content" className="section-next">
@@ -60,7 +64,13 @@ const Order = () => {
               <img src={item.imageUrl} alt={item.name} className="item-image" />
               <h3>{item.name}</h3>
               <p>₹{item.price.toFixed(2)}</p>
-              <button onClick={() => addToCart(item.id, 1)}>Add to Cart</button>
+              <button 
+                onClick={() => addToCart(item.id, 1)}
+                className={addedItems.includes(item) ? 'added' : ''}
+                disabled={addedItems.includes(item.id)}
+              >
+                {addedItems.includes(item.id) ? "Added to Cart" : "Add to Cart"}
+              </button>
             </div>
           ))}
         </div>

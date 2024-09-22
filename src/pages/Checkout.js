@@ -1,7 +1,9 @@
-// src/pages/Checkout.js
 import React, { useState } from 'react';
 import '../styles/Checkout.css'; // Create this CSS file for styling
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { cashfree } from '../util';
+
 
 const Checkout = () => {
   const [customer, setCustomer] = useState({
@@ -22,27 +24,68 @@ const Checkout = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/create-order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ customer, cart }),
+      // Create order
+      const orderResponse = await axios.post('http://localhost:5000/api/create-order', {
+        customer,
+        cart
       });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+
+      const { orderId, amount } = orderResponse.data;
+
+      if (!orderId || !amount) {
+        throw new Error("Invalid orderId or Amount");
       }
-      const data = await response.json();
-      // Handle successful order creation
-      console.log('Order created:', data);
-      // Redirect or show success message
+
+      // Initiate payment
+      const paymentResponse = await axios.post('http://localhost:5000/api/initiate-payment', {
+        orderId: orderId.toString(),
+        amount,
+        customerEmail : customer.email,
+        customerPhone : customer.phone
+
+      });
+
+      const { paymentSessionId } = paymentResponse.data;
+
+      if (paymentSessionId) {
+        // Use paymentSessionId to initiate payment with Cashfree
+        let checkoutOptions = {
+          paymentSessionId: paymentSessionId,
+          returnUrl: `http://localhost:3000/payment-success`
+        };
+  
+        cashfree.checkout(checkoutOptions).then(async function (result) {
+          if (result.error) {
+            console.error('Payment error:', result.error.message);
+            alert(`Payment failed: ${result.error.message}`);
+          } else if (result.redirect) {
+            console.log('Redirection');
+          } else{
+            console.log("Payment Successful: ",result.paymentDetails.paymentMessage);
+            alert("Payment Successful");
+          }
+            await axios.post("http://localhost:5000/api/payment-success",{
+              orderId:orderId.toString(),
+              amount,
+              customerEmail: customer.email
+            })
+          // }
+        }).catch(error => {
+          console.error('Cashfree checkout error:', error);
+          alert('Payment failed. Please try again.');
+        });
+      } else {
+        alert('Payment initiation failed. Please try again.');
+      }
+  
     } catch (error) {
-      console.error('Error creating order:', error);
+      alert(`Order creation failed: ${error.message}`);
     }
   };
 
   return (
-    <div className="checkout-page">
+      <><div className='up'></div>
+      <div className="checkout-page">
       <h2>Checkout</h2>
       <form onSubmit={handleSubmit} className="customer-form">
         <label>
@@ -52,8 +95,7 @@ const Checkout = () => {
             name="name"
             value={customer.name}
             onChange={handleChange}
-            required
-          />
+            required />
         </label>
         <label>
           Email:
@@ -62,8 +104,7 @@ const Checkout = () => {
             name="email"
             value={customer.email}
             onChange={handleChange}
-            required
-          />
+            required />
         </label>
         <label>
           Phone:
@@ -72,8 +113,7 @@ const Checkout = () => {
             name="phone"
             value={customer.phone}
             onChange={handleChange}
-            required
-          />
+            required />
         </label>
         <label>
           Address:
@@ -81,12 +121,11 @@ const Checkout = () => {
             name="address"
             value={customer.address}
             onChange={handleChange}
-            required
-          />
+            required />
         </label>
-        <button type="submit" className="order-now-button">Place Order</button>
+        <button type="submit" className="order-now-button">Proceed to Pay</button>
       </form>
-    </div>
+    </div></>
   );
 };
 

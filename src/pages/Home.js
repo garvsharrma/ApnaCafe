@@ -143,36 +143,19 @@ function Home() {
           <div class="grid-item"><img src={smImage8} alt="8" className='sm-image'/></div>
           <div class="grid-item"><img src={smImage9} alt="9" className='sm-image'/></div>
         </div>
-      <img src={logo} alt="Logo" className="bottom-center-image" />
       </div>
 
-      <div className='happy-clients'>
-
-        <h2 className='hc-heading'>Our Happy Clients!!</h2>
-        <h3 className='rating'>Good</h3>
-        <div className='stars'>
-      <img src={starFilled} alt="star-rating" className="star-rating" />
-      <img src={starFilled} alt="star-rating" className="star-rating" />
-      <img src={starFilled} alt="star-rating" className="star-rating" />
-      <img src={starFilled} alt="star-rating" className="star-rating" />
-      <img src={starHalfFilled} alt="star-rating" className="star-rating" />
-        </div>
-      <h3 className='review-text'>According to 1071 reviews</h3>
-
-        <div className='cards'>
-
-          <div className="App">
-            <Carousel cards={cards} />
-          </div>
-
-        </div>
-      </div>
 
       <div className='contact-us'>
+      <div className='git-heading'>
+          <span className='separator-holder separator-left'></span>
+          Contact Us
+          <span className='separator-holder separator-right'></span>
+        </div>
         <div className='contact-content'>
-        <h5 className='contact-conten'>Looking for a space to organize your private event or party?</h5>
-        <h5 className='contact-conten'>You get into the right place!</h5>
-        <h5 className='contact-conten'>Contact us and tell us your requirements.</h5>
+        <h5>Looking for a space to organize your private event or party?</h5>
+        <h5>You get into the right place!</h5>
+        <h5>Contact us and tell us your requirements.</h5>
         <a href = "/contact"><button class="boton-elegante">Contact Us</button></a>
       </div>
       <img src={contactIMG} alt="contact" className="contact-side-image" />
