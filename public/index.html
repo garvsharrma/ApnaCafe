@@ -2,8 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <title>Apna Cafe</title>
+    <script type="text/javascript">
+      var pathname = window.location.pathname;
+      if (pathname !== "/") {
+        window.location.href = "/";
+      }
+    </script>
+        <title>Apna Cafe</title>
   </head>
   <body>
     <div id="root"></div>
