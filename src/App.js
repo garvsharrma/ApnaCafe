@@ -15,7 +15,6 @@ import TermsAndConditions from './components/TermsAndConditions';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import RefundPolicy from './components/RefundPolicy';
 import PaymentSuccess from './components/PaymentSuccess';
-import ABC from './pages/Abc';
 
 
 function App() {
@@ -35,7 +34,6 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
-          <Route path="/abc" element={<ABC />} />
 
 
         </Routes>
