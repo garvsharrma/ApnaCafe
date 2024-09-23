@@ -21,21 +21,9 @@ import smImage6 from '../images/sm-image6.jpg';
 import smImage7 from '../images/sm-image7.jpg';
 import smImage8 from '../images/sm-image8.jpg';
 import smImage9 from '../images/sm-image9.jpg';
-import starFilled from '../images/filled-star.png';
-import starHalfFilled from '../images/star-half-empty.png';
 import contactIMG from '../images/contact-side-img.jpg';
 
-
 function Home() {
-
-  const cards = [
-    { title: 'Product 1', description: 'Description for Product 1' },
-    { title: 'Product 2', description: 'Description for Product 2' },
-    { title: 'Product 3', description: 'Description for Product 3' },
-    { title: 'Product 4', description: 'Description for Product 4' },
-    { title: 'Product 5', description: 'Description for Product 5' },
-    { title: 'Product 6', description: 'Description for Product 6' },
-  ];
 
   return (
     <><><div className="home-container">
@@ -142,31 +130,7 @@ function Home() {
           <div class="grid-item"><img src={smImage8} alt="8" className='sm-image'/></div>
           <div class="grid-item"><img src={smImage9} alt="9" className='sm-image'/></div>
         </div>
-      <img src={logo} alt="Logo" className="bottom-center-image" />
       </div>
-
-      <div className='happy-clients'>
-
-        <h2 className='hc-heading'>Our Happy Clients!!</h2>
-        <h3 className='rating'>Good</h3>
-        <div className='stars'>
-      <img src={starFilled} alt="star-rating" className="star-rating" />
-      <img src={starFilled} alt="star-rating" className="star-rating" />
-      <img src={starFilled} alt="star-rating" className="star-rating" />
-      <img src={starFilled} alt="star-rating" className="star-rating" />
-      <img src={starHalfFilled} alt="star-rating" className="star-rating" />
-        </div>
-      <h3 className='review-text'>According to 1071 reviews</h3>
-
-        <div className='cards'>
-
-          <div className="App">
-            {/* <Carousel cards={cards} /> */}
-          </div>
-
-        </div>
-      </div>
-
       <div className='contact-us'>
         <div className='contact-content'>
         <h5 className='contact-conten'>Looking for a space to organize your private event or party?</h5>
