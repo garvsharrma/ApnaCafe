@@ -24,8 +24,10 @@ const Reservation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api'; // Use the environment variable
+
     try {
-      const response = await fetch('http://localhost:5000/api/reservations', {
+      const response = await fetch(`${API_BASE_URL}/reservations`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -36,8 +38,7 @@ const Reservation = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('Reservation saved:', data);
-        // Set success message
-        setSuccessMessage('Reservation successfull! You will recieve a confirmation mail shortly');
+        setSuccessMessage('Reservation successful! You will receive a confirmation email shortly.');
         // Reset form data
         setFormData({
           name: '',
@@ -47,18 +48,15 @@ const Reservation = () => {
           time: '',
           guests: ''
         });
-        // Clear error message if any
         setErrorMessage('');
       } else {
         console.error('Failed to save reservation');
         setErrorMessage('Failed to save reservation. Please try again.');
-        // Clear success message if any
         setSuccessMessage('');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setErrorMessage('Error submitting form. Please try again.');
-      // Clear success message if any
       setSuccessMessage('');
     }
   };
@@ -118,18 +116,17 @@ const Reservation = () => {
               />
             </div>
             <div className="form-group">
-            <label htmlFor="date">Date:</label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-              min={new Date().toISOString().split('T')[0]} // Sets the min date to today's date
-            />
-          </div>
-
+              <label htmlFor="date">Date:</label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                required
+                min={new Date().toISOString().split('T')[0]} // Sets the min date to today's date
+              />
+            </div>
             <div className="form-group">
               <label htmlFor="time">Time:</label>
               <input
@@ -154,8 +151,8 @@ const Reservation = () => {
             </div>
             <button className='reservation-button' type="submit">Reserve</button>
           </form>
-        {successMessage && <p className="success-message">{successMessage}</p>}
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {successMessage && <p className="success-message">{successMessage}</p>}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
       </div>
     </div>

@@ -7,62 +7,74 @@ const Cart = () => {
   const [order, setOrder] = useState(null);
   const navigate = useNavigate();
 
+  // Use the environment variable for API base URL
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+
+  // Fetch cart data when component mounts
   useEffect(() => {
-    fetch('http://localhost:5000/api/cart')
-      .then(response => response.json())
+    fetch(`${API_BASE_URL}/cart`)
+      .then(response => {
+        if (!response.ok) throw new Error(`Failed to fetch cart: ${response.status}`);
+        return response.json();
+      })
       .then(data => setCart(data))
       .catch(error => console.error('Error fetching cart:', error));
-  }, []);
+  }, [API_BASE_URL]);
 
+  // Remove item from cart
   const removeFromCart = async (itemId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
+      const response = await fetch(`${API_BASE_URL}/cart/${itemId}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      setCart(data);
+      setCart(data); // Update cart state with the remaining items
     } catch (error) {
       console.error('Error removing from cart:', error);
     }
   };
 
+  // Handle checkout navigation
   const handleCheckout = () => {
-    // Pass cart data to the checkout page
     navigate('/checkout', { state: { cart } });
   };
 
   return (
-    <><div className='up'></div>
-    <div className="cart-page">
-      <div className='cart-content'>
-        <h2>Your Cart</h2>
-        {cart.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <>
-            {cart.map(({ item, quantity }) => (
-              <div key={item.id} className="cart-item">
-                <h3>{item.name}</h3>
-                <p>Quantity: {quantity}</p>
-                <p>Total: ₹{(item.price * quantity).toFixed(2)}</p>
-                <button onClick={() => removeFromCart(item.id)}>Remove</button>
-              </div>
-            ))}
-        <button className="button" onClick={handleCheckout}>Checkout
-  <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
-    <path
-      clip-rule="evenodd"
-      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
-      fill-rule="evenodd"
-    ></path>
-  </svg>
-</button>
-          </>
-        )}</div>
-      </div></>
+    <>
+      <div className='up'></div>
+      <div className="cart-page">
+        <div className='cart-content'>
+          <h2>Your Cart</h2>
+          {cart.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <>
+              {cart.map(({ item, quantity }) => (
+                <div key={item.id} className="cart-item">
+                  <h3>{item.name}</h3>
+                  <p>Quantity: {quantity}</p>
+                  <p>Total: ₹{(item.price * quantity).toFixed(2)}</p>
+                  <button onClick={() => removeFromCart(item.id)}>Remove</button>
+                </div>
+              ))}
+              <button className="button" onClick={handleCheckout}>
+                Checkout
+                <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
+                  <path
+                    clipRule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                    fillRule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 
