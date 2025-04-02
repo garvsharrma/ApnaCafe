@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import '../styles/Checkout.css'; // Ensure you have this file for styling
+import '../styles/Checkout.css'; // Create this CSS file for styling
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { cashfree } from '../util';
+import { API_BASE_URL } from '../config/api';
 
 const Checkout = () => {
   const [customer, setCustomer] = useState({
@@ -14,9 +15,6 @@ const Checkout = () => {
 
   const location = useLocation();
   const cart = location.state?.cart || []; // Get cart data passed from Cart.js
-
-  // Use environment variable for API base URL
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +50,7 @@ const Checkout = () => {
         // Use paymentSessionId to initiate payment with Cashfree
         let checkoutOptions = {
           paymentSessionId: paymentSessionId,
-          returnUrl: `https://garvsharrma.github.io/ApnaCafe/payment-success` // Update this to your deployed frontend URL if needed
+          returnUrl: `http://localhost:3000/payment-success`
         };
 
         cashfree.checkout(checkoutOptions).then(async function (result) {
@@ -62,16 +60,16 @@ const Checkout = () => {
           } else if (result.redirect) {
             console.log('Redirection');
           } else {
-            console.log("Payment Successful: ", result.paymentDetails.paymentMessage);
-            alert("Payment Successful");
-
-            // Notify backend of successful payment
+            console.log('Payment Successful: ', result);
+            alert('Payment Successful');
+          }
+            // Always call payment-success API here
             await axios.post(`${API_BASE_URL}/payment-success`, {
               orderId: orderId.toString(),
               amount,
               customerEmail: customer.email
             });
-          }
+          
         }).catch(error => {
           console.error('Cashfree checkout error:', error);
           alert('Payment failed. Please try again.');
@@ -79,56 +77,58 @@ const Checkout = () => {
       } else {
         alert('Payment initiation failed. Please try again.');
       }
+
     } catch (error) {
       alert(`Order creation failed: ${error.message}`);
     }
   };
 
   return (
-    <>
-      <div className='up'></div>
-      <div className="checkout-page">
-        <h2>Checkout</h2>
-        <form onSubmit={handleSubmit} className="customer-form">
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={customer.name}
-              onChange={handleChange}
-              required />
-          </label>
-          <label>
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={customer.email}
-              onChange={handleChange}
-              required />
-          </label>
-          <label>
-            Phone:
-            <input
-              type="tel"
-              name="phone"
-              value={customer.phone}
-              onChange={handleChange}
-              required />
-          </label>
-          <label>
-            Address:
-            <textarea
-              name="address"
-              value={customer.address}
-              onChange={handleChange}
-              required />
-          </label>
-          <button type="submit" className="order-now-button">Proceed to Pay</button>
-        </form>
-      </div>
-    </>
+    <div className="checkout-page">
+      <h2>Checkout</h2>
+      <form onSubmit={handleSubmit} className="customer-form">
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={customer.name}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            type="email"
+            name="email"
+            value={customer.email}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Phone:
+          <input
+            type="tel"
+            name="phone"
+            value={customer.phone}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Address:
+          <textarea
+            name="address"
+            value={customer.address}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <button type="submit" className="order-now-button">Place Order</button>
+      </form>
+    </div>
   );
 };
 

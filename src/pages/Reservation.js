@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Reservation.css';
+import { API_BASE_URL } from '../config/api';
 
 const Reservation = () => {
   const [formData, setFormData] = useState({
@@ -23,8 +24,6 @@ const Reservation = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api'; // Use the environment variable
 
     try {
       const response = await fetch(`${API_BASE_URL}/reservations`, {

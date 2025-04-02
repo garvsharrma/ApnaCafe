@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
 import instaIcon from '../images/icon-insta.png';
 import fbIcon from '../images/icon-fb.png';
-
 import '@fortawesome/fontawesome-free/css/all.css';
 
 function Navbar() {

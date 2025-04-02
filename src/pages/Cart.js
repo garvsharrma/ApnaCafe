@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Cart.css';
+import { API_BASE_URL } from '../config/api';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [order, setOrder] = useState(null);
   const navigate = useNavigate();
-
-  // Use the environment variable for API base URL
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
 
   // Fetch cart data when component mounts
   useEffect(() => {
